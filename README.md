@@ -1,12 +1,12 @@
 # NeoSV
-A computational workflow to identify neoantigens from structural variations (SVs)
+NeoSV is a computational workflow to identify neoantigens from structural variations (SVs). NeoSV has been sucessfully applied to 2,528 tumors from the Pan Cancer Analysis of Whole Genomes (PCAWG) project. For more detailed information, please see:. 
 
 # Installation
 ### Prerequisites
-* Please make sure your Python version is greater than 3.7.
-* NeoSV need netMHCpan to predict the binding affinity between neoantigens and MHC molecules. A detailed guidance for netMHCpan is available here.<br>
-
-### Dowload
+* [Python (>3.6)](https://www.python.org/downloads/). NeoSV should work well with all versions of Python3, but has been only tested on Python > 3.6
+* [netMHCpan (>4.0)](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.1). After you get the web link for downloading, there will be a accompanied guidance on installing and configuring netMHCpan
+netMHCpan in the email
+### Download
   1. via PyPI (recommended): `pip install NeoSV`<br>
   2. via Anaconda: `conda install NeoSV`<br>
   3. or you can download the source code and compile it manually by typing: `python setup.py install`. If you do this way, you also need to install some dependencies, including: biopython, pyensembl.
@@ -26,3 +26,7 @@ NeoSV requires 3 types of inputs:
   - **Automatically download by NeoSV:** If NeoSV did not detect a valid reference in , it will automatically download one to that folder. However, please make sure that your server/computer can connect to the internet, because most high performance computing nodes are disconnected.
   - **Prepare the reference file manually:** This would be useful if your data is not from human or mouse. Then you need to prepare the reference by yourself. A FASTA file and a GTF file will be enough. For more details please see the guidance in pyensembl.
 ### Run
+
+### Output
+
+# Citation
