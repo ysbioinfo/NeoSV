@@ -80,16 +80,16 @@ Several files will be generated in output directory:<br>
 
   | Column index | Column name | Content |
   | :------------: | --- | --- |
-  | 1 | chrom1 | Chromosome of the 1st breakpoint |
-  | 2 | pos1 | Genommic position of the 1st breakpoint |
-  | 3 | function1 | Genomic of the 1st breadpoint. Values: _Intergenic_, _Intron_, _Exon_ |
-  | 4 | gene1 | Gene name of the 1st breakpoint |
+  | 1 | chrom1 | Chromosome of the 1st breakpoint. |
+  | 2 | pos1 | Genommic position of the 1st breakpoint. |
+  | 3 | function1 | Location of the 1st breadpoint relative to a gene. Values: _Intergenic_, _Intron_, _Exon_. |
+  | 4 | gene1 | Gene name of the 1st breakpoint. |
   | 5 | transcript_id1 | Ensembl transcript ID of the 1st breakpoint |
   | 6 | strand1 | Strand of the gene. Values: _+_, _-_ |
-  | 5 | chrom2 | Chromosome of the 2nd breakpoint |
-  | 6 | pos2 | Genommic position of the 2nd breakpoint |
-  | 7 | gene2 | Gene name of the 2nd breakpoint |
-  | 8 | transcript_id2 | Ensembl transcript ID of the 2nd breakpoint |
+  | 7 | chrom2 | Chromosome of the 2nd breakpoint |
+  | 8 | pos2 | Genommic position of the 2nd breakpoint |
+  | 9 | gene2 | Gene name of the 2nd breakpoint |
+  | 10 | transcript_id2 | Ensembl transcript ID of the 2nd breakpoint |
   | 9 | svpattern | |
   | 10 | svtype | SV types according to the orientation of junction read. Values: DUP, DEL, TRA, t2tINV, or h2hINV |
   | 11 | frameshift | The effect on open reading frame. Values: In-frame, Stop-gain, Stop-loss, Start-loss |
