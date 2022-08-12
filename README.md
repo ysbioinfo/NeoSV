@@ -1,4 +1,5 @@
 # NeoSV
+[![Latest Version](https://pypip.in/version/<NeoSV>/badge.svg)](https://pypi.python.org/pypi/<NeoSV>/)
 NeoSV is a computational workflow to identify neoantigens from structural variations (SVs). NeoSV has been sucessfully applied to 2,528 tumors from the Pan Cancer Analysis of Whole Genomes (PCAWG) project. For more detailed information, please see:. 
 
 # Installation
