@@ -69,8 +69,8 @@ Several files will be generated in output directory:<br>
   | 7 | gene2 | Gene name of the 2nd breakpoint |
   | 8 | transcript_id2 | Ensembl transcript ID of the 2nd breakpoint |
   | 9 | svpattern | |
-  | 10 | svtype | SV types according to the orientation of junction read. Values: DUP, DEL, TRA, t2tINV, or h2hINV |
-  | 11 | frameshift | The effect on open reading frame. Values: In-frame, Stop-gain, Stop-loss, Start-loss |
+  | 10 | svtype | SV types according to the orientation of junction read. Values: _DUP_, _DEL_, _TRA_, _t2tINV_, or _h2hINV_. |
+  | 11 | frameshift | The effect on open reading frame. Values: _In-frame_, _Stop-gain_, _Stop-loss_, _Start-loss_. |
   | 12 | neoantigen | Amino acid sequence of the neoantigen |
   | 13 | allele | HLA allele that binds to the neoantigen |
   | 14 | affinity | Binding affinity (nM) provided by netMHCpan |
@@ -85,17 +85,18 @@ Several files will be generated in output directory:<br>
   | 3 | function1 | Location of the 1st breadpoint relative to a gene. Values: _Intergenic_, _Intron_, _Exon_. |
   | 4 | gene1 | Gene name of the 1st breakpoint. |
   | 5 | transcript_id1 | Ensembl transcript ID of the 1st breakpoint |
-  | 6 | strand1 | Strand of the gene. Values: _+_, _-_ |
-  | 7 | chrom2 | Chromosome of the 2nd breakpoint |
-  | 8 | pos2 | Genommic position of the 2nd breakpoint |
-  | 9 | gene2 | Gene name of the 2nd breakpoint |
-  | 10 | transcript_id2 | Ensembl transcript ID of the 2nd breakpoint |
-  | 9 | svpattern | |
-  | 10 | svtype | SV types according to the orientation of junction read. Values: DUP, DEL, TRA, t2tINV, or h2hINV |
-  | 11 | frameshift | The effect on open reading frame. Values: In-frame, Stop-gain, Stop-loss, Start-loss |
-  | 12 | neoantigen | Amino acid sequence of the neoantigen |
-  | 13 | allele | HLA allele that binds to the neoantigen |
-  | 14 | affinity | Binding affinity (nM) provided by netMHCpan |
-  | 15 | rank | Rank of the binding provided by netMHCpan |
+  | 6 | strand1 | Coding strand of the 1st gene. Values: _+_, _-_, _None (if intergenic)_ |
+  | 7 | transcript_retain1 | The part being retained of transcript, I/i indicates intron, E/e indicates exon. Upper case means an intact exon/intron, while lower case means the exon/intron is truncated by this SV |
+  | 8 | chrom2 | Chromosome of the 2nd breakpoint |
+  | 9 | pos2 | Genommic position of the 2nd breakpoint |
+  | 10 | function2 | Location of the 1st breadpoint relative to a gene. Values: _Intergenic_, _Intron_, _Exon_. |
+  | 11 | gene2 | Gene name of the 2nd breakpoint |
+  | 12 | transcript_id2 | Ensembl transcript ID of the 2nd breakpoint |
+  | 13 | strand2 | Coding strand of the 2nd gene. Values: _+_, _-_, _None (if intergenic)_ |
+  | 14 | transcript_retain2 | |
+  | 15 | svpattern | |
+  | 16 | svtype | SV types according to the orientation of junction read. Values: _DUP_, _DEL_, _TRA_, _t2tINV_, or _h2hINV_. |
+  | 17 | fusion | Whether this SV can lead to a functional gene fusion. It should be noted that the fusion is not restricted to two-gene fusion. |
+  
   
 # Citation
