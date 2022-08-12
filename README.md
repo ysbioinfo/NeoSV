@@ -36,33 +36,23 @@ Suppose you have a mutation file named `test.sv.vcf`, a HLA file named `test.hla
 python neosv.py -vf test.sv.vcf -hf test.hla.txt -np /path/to/netmhcpan -o test -p test -r 75    
 ```
 Below is detailed description for each parameter:
-* `-h, --help` show the help message.<br>
-* `-vf, --vcf-file` File for structural variants in VCF format.<br>
-* `-hf, --hla-file` File for HLA alleles with one allele per line.<br>
-
- `-np, --netmhc-path` Absolute path of the netMHCpan execution file.<br>
-
- `-o, --out` Output directory. A new folder will be created if it doesn't exist.<br>
-
- `-p, --prefix` The prefix added to all output files.<br>
-
-&nbsp;&nbsp;&nbsp; `-r, --release` Which reference (ENSEMBL release) you want to use. Valid values are54-94(homo sapiens release number) or custom. Ensembl release corresponding to hg19/GRCh37, hg38/GRCh38 are 54, 75, 95.If your data are from other species(custom), please download the gtf file and the cdna file from ENSEMBL we ftp://ftp.ensembl.org/pub and specify them using --gtf-file and --cdna-file.<br>
-
- `-gf, --gtf-file` Path of GTF file for the assembly.<br>
-
- `-cf, --cdna-file` Path of CDNA file for the assembly.<br>
-
- `-pd, --pyensembl-cache-dir` Directory for Pyensembl cache files. If not specified, the paltform-specificCache folder will be used.<br>
-
- `-l, --epitope-lengths` Lengths of neoepitopes to predict MHC binding.<br>
-
-  `-ic, --ic50-cutoff` Filter neoepitopes with IC50 (nM) above this value.<br>
-
-  `-rc, --ranking-cutoff` Filter neoepitopes with rank above this value.<br>
-
-  `-ct, --complete-transcript` Only complete transcripts will be considered for SV annotation.<br>
-
-  `--anno-only` Whether to only annotate SV without predicting neoantigens.<br>
+| Parameter | Description |
+| :------------: | --- |
+| -h | show the help message |
+| -vf | File for structural variants in VCF format |
+| -hf | File for HLA alleles with one allele per line |
+| -np | Absolute path of the netMHCpan execution file |
+| -o | Output directory. A new folder will be created if it doesn't exist |
+| -p | The prefix added to all output files |
+| -r | Which reference (ENSEMBL release) you want to use. Valid values are54-94(homo sapiens release number) or custom. Ensembl release corresponding to hg19/GRCh37, hg38/GRCh38 are 54, 75, 95.If your data are from other species(custom), please download the gtf file and the cdna file from ENSEMBL we ftp://ftp.ensembl.org/pub and specify them using --gtf-file and --cdna-file |
+| -gf | Path of GTF file for the assembly |
+| -cf | Path of CDNA file for the assembly |
+| -pd | Directory for Pyensembl cache files. If not specified, the paltform-specificCache folder will be used |
+| -l | Lengths of neoepitopes to predict MHC binding |
+| -ic | Filter neoepitopes with IC50 (nM) above this value |
+| -rc | Filter neoepitopes with rank above this value |
+| -ct | Only complete transcripts will be considered for SV annotation |
+| --anno-only | Whether to only annotate SV without predicting neoantigens |
 
 ### Output
 
