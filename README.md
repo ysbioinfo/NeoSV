@@ -55,5 +55,9 @@ Below is detailed description for each parameter:
 | `--anno-only` | Whether to only annotate SV without predicting neoantigens |
 
 ### Output
-
+Several files will be generated in output directory:<br>
+**{prefix}.neoantigen.filtered.txt**
+| Parameter | Description |
+| :------------: | --- |
+| 1st column | |
 # Citation
