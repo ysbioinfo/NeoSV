@@ -55,8 +55,9 @@ Below is detailed description for each parameter:
 | `--anno-only` | Whether to only annotate SV without predicting neoantigens |
 
 ### Output
-Several files will be generated in output directory:<br>
-* ***{prefix}.neoantigen.filtered.txt***
+Several files will be generated in the output directory, you may have interest in the files suffixed by ***neoantigen.filtered.txt*** and ***anno.filtered.txt***
+
+* ***{prefix}.neoantigen.filtered.txt*** stores all information of the candidate neantigens:
 
   | Column index | Column name | Content |
   | :------------: | --- | --- |
@@ -76,7 +77,7 @@ Several files will be generated in output directory:<br>
   | 14 | affinity | Binding affinity (nM) provided by netMHCpan |
   | 15 | rank | Rank of the binding provided by netMHCpan |
 
-* ***{prefix}.anno.filtered.txt***
+* ***{prefix}.anno.filtered.txt*** stores all annotations of the SVs:
 
   | Column index | Column name | Content |
   | :------------: | --- | --- |
