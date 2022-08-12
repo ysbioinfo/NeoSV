@@ -97,6 +97,9 @@ Several files will be generated in output directory:<br>
   | 15 | svpattern | |
   | 16 | svtype | SV types according to the orientation of junction read. Values: _DUP_, _DEL_, _TRA_, _t2tINV_, or _h2hINV_. |
   | 17 | fusion | Whether this SV can lead to a functional gene fusion. It should be noted that the fusion is not restricted to two-gene fusion. |
-  
-  
+
+* ***{prefix}.net.in.txt*** stores the peptides fed to netMHCpan.
+
+* ***{prefix}.net.out.txt*** stores the raw output from netMHCpan.
+
 # Citation
