@@ -36,23 +36,23 @@ Suppose you have a mutation file named `test.sv.vcf`, a HLA file named `test.hla
 python neosv.py -vf test.sv.vcf -hf test.hla.txt -np /path/to/netmhcpan -o test -p test -r 75    
 ```
 Below is detailed description for each parameter:
-| Parameter | Description |
-| :------------: | --- |
-| `-h` | show the help message |
-| `-vf` | Structural variants in VCF format |
-| `-hf` | HLA alleles, with one allele (4 digit) per line |
-| `-np` | Absolute path of the netMHCpan execution file, please skip this parameter if netMHCpan has been added to your PATH |
-| `-o` | Folder for all result files. A new folder will be created if it does not exist |
-| `-p` | A prefix will be added to all output files |
-| `-r` | The release of Ensembl to use. Valid release versions can be found here. Ensembl release corresponding to hg19/GRCh37, hg38/GRCh38 are 75, 95. If your data is from other species, you need to download a GTF file and a cDNA file from [Ensembl](ftp://ftp.ensembl.org/pub) and specify them using -gf and -cf |
-| `-gf` | GTF file for the reference, only needed  |
-| `-cf` | cDNA file for the reference |
-| `-pd` | Directory for Pyensembl cache files. If not specified, the platform-specific cache folder will be used |
-| `-l` | Lengths of neoepitopes to predict MHC binding. Default: 8-11 |
-| `-ic` | Filter neoepitopes with IC50 (nM) above this value. Default: 500 |
-| `-rc` | Filter neoepitopes with rank above this value. Default: 2 |
-| `-ct` | Only complete transcripts will be considered for SV annotation. Default: True |
-| `--anno-only` | Whether to only annotate SV without predicting neoantigens |
+  | Parameter | Description |
+  | :------------: | --- |
+  | `-h` | show the help message |
+  | `-vf` | Structural variants in VCF format |
+  | `-hf` | HLA alleles, with one allele (4 digit) per line |
+  | `-np` | Absolute path of the netMHCpan execution file, please skip this parameter if netMHCpan has been added to your PATH |
+  | `-o` | Folder for all result files. A new folder will be created if it does not exist |
+  | `-p` | A prefix will be added to all output files |
+  | `-r` | The release of Ensembl to use. Valid release versions can be found here. Ensembl release corresponding to hg19/GRCh37, hg38/GRCh38 are 75, 95. If your data is from other species, you need to download a GTF file and a cDNA file from [Ensembl](ftp://ftp.ensembl.org/pub) and specify them using -gf and -cf |
+  | `-gf` | GTF file for the reference, only needed  |
+  | `-cf` | cDNA file for the reference |
+  | `-pd` | Directory for Pyensembl cache files. If not specified, the platform-specific cache folder will be used |
+  | `-l` | Lengths of neoepitopes to predict MHC binding. Default: 8-11 |
+  | `-ic` | Filter neoepitopes with IC50 (nM) above this value. Default: 500 |
+  | `-rc` | Filter neoepitopes with rank above this value. Default: 2 |
+  | `-ct` | Only complete transcripts will be considered for SV annotation. Default: True |
+  | `--anno-only` | Whether to only annotate SV without predicting neoantigens |
 
 ### Output
 Several files will be generated in the output directory, you may have interest in the files suffixed by ***neoantigen.filtered.txt*** and ***anno.filtered.txt***
