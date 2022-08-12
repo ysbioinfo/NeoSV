@@ -3,10 +3,11 @@
     <img src="https://img.shields.io/pypi/v/NeoSV.svg?maxAge=1000" alt="PyPI" />
 </a>
 
-NeoSV is a computational workflow to identify neoantigens from structural variations (SVs).
+A computational workflow to identify **Neo**antigens from **S**tructural **V**ariations.
 
 # Background
-NeoSV has been sucessfully applied to 2,528 tumors from the Pan Cancer Analysis of Whole Genomes (PCAWG) project. For more detailed information, please see:. 
+Neoantigens are considered as ideal targets for immunotherapies because they are tumor-specifc and not subject to immune tolerance. Previous studies have been focused on single nucleotide variation (SNV) and insertion-and-deletion (indel), with the neoantigens from structural variation (SV) less characterized.
+We developed a Python package-NeoSV-to annotate the effect of SVs on protein and predict potential neoantigens created by SVs. We have successfully applied NeoSV to thousands of tumor genomes from Pan Cancer Analysis of Whole Genomes (PCAWG) and constructed a comprehensive repertoire of SV-derived neoantigens. For more detailed information, please see our paper. 
 
 # Installation
 ### Prerequisites
