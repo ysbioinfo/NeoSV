@@ -39,10 +39,10 @@ Below is detailed description for each parameter:
 | Parameter | Description |
 | :------------: | --- |
 | -h | show the help message |
-| -vf | File for structural variants in VCF format |
-| -hf | File for HLA alleles with one allele per line |
-| -np | Absolute path of the netMHCpan execution file |
-| -o | Output directory. A new folder will be created if it doesn't exist |
+| -vf | Structural variants in VCF format |
+| -hf | HLA alleles, with one allele (4 digit) per line |
+| -np | Absolute path of the netMHCpan execution file, please skip this parameter if netMHCpan has been added to your PATH |
+| -o | Output directory to store all result files. A new folder will be created if it doesn't exist |
 | -p | The prefix added to all output files |
 | -r | Which reference (ENSEMBL release) you want to use. Valid values are54-94(homo sapiens release number) or custom. Ensembl release corresponding to hg19/GRCh37, hg38/GRCh38 are 54, 75, 95.If your data are from other species(custom), please download the gtf file and the cdna file from ENSEMBL we ftp://ftp.ensembl.org/pub and specify them using --gtf-file and --cdna-file |
 | -gf | Path of GTF file for the assembly |
