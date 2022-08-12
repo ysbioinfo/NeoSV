@@ -17,7 +17,7 @@ We developed a Python package-NeoSV-to **_annotate_** the effect of SVs on prote
 * From source: download the code from github and type `python setup.py install`. If you do this way, you need install [biopython](https://biopython.org/), [pyensembl](https://github.com/openvax/pyensembl) by yourself.
 
 
-# User guide
+# Usage
 ### Input
 NeoSV requires 3 types of inputs:
 * **Mutation file:** a file in VCF format which lists all SVs you want to analyze. Please see sv.vcf as a template.
@@ -36,22 +36,22 @@ NeoSV requires 3 types of inputs:
   python neosv.py -vf test.sv.vcf -hf test.hla.txt -np /path/to/netmhcpan -o test -p test -r 75    
   ```
 * Below is detailed description for each parameter:
-  | Parameter | Description |
-  | :------------: | --- |
-  | `-h` | show the help message |
-  | `-vf` | Structural variants in VCF format |
-  | `-hf` | HLA alleles, with one allele (4 digit) per line |
-  | `-np` | Absolute path of the netMHCpan execution file, please skip this parameter if netMHCpan has been added to your PATH |
-  | `-o` | Folder for all result files. A new folder will be created if it does not exist |
-  | `-p` | A prefix will be added to all output files |
-  | `-r` | The release of Ensembl to use. Valid release versions can be found here. Ensembl release corresponding to hg19/GRCh37, hg38/GRCh38 are 75, 95. If your data is from other species, you need to download a GTF file and a cDNA file from [Ensembl](ftp://ftp.ensembl.org/pub) and specify them using -gf and -cf |
-  | `-gf` | GTF file for the reference, only needed  |
-  | `-cf` | cDNA file for the reference |
-  | `-pd` | Directory for Pyensembl cache files. If not specified, the platform-specific cache folder will be used |
-  | `-l` | Lengths of neoepitopes to predict MHC binding. Default: 8-11 |
-  | `-ic` | Filter neoepitopes with IC50 (nM) above this value. Default: 500 |
-  | `-rc` | Filter neoepitopes with rank above this value. Default: 2 |
-  | `-ct` | Only complete transcripts will be considered for SV annotation. Default: True |
+  | &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Argument &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;| Description |
+  | :------------ | --- |
+  | `-h`, `--help` | show the help message |
+  | `-vf`, `--vcf-file` | Structural variants in VCF format |
+  | `-hf`, `--hla-file` | HLA alleles, with one allele (4 digit) per line |
+  | `-np`, `--netmhc-path` | Absolute path of the netMHCpan execution file, please skip this parameter if netMHCpan has been added to your PATH |
+  | `-o`, `--out` | Folder for all result files. A new folder will be created if it does not exist |
+  | `-p`, `--prefix` | A prefix will be added to all output files |
+  | `-r`, `--release` | The release of Ensembl to use. Valid release versions can be found here. Ensembl release corresponding to hg19/GRCh37, hg38/GRCh38 are 75, 95. If your data is from other species, you need to download a GTF file and a cDNA file from [Ensembl](ftp://ftp.ensembl.org/pub) and specify them using -gf and -cf |
+  | `-gf`, `--gtf-file` | GTF file for the reference, only needed  |
+  | `-cf`, `--cdna-file` | cDNA file for the reference |
+  | `-pd`, `--pyemsembl-cache-dir` | Directory for Pyensembl cache files. If not specified, the platform-specific cache folder will be used |
+  | `-l`, `--epitope-lengths` | Lengths of neoepitopes to predict MHC binding. Default: 8-11 |
+  | `-ic`, `--ic50-cutoff` | Filter neoepitopes with IC50 (nM) above this value. Default: 500 |
+  | `-rc`, `--rank-cutoff` | Filter neoepitopes with rank above this value. Default: 2 |
+  | `-ct`, `--complete-transcript` | Only complete transcripts will be considered for SV annotation. Default: True |
   | `--anno-only` | Whether to only annotate SV without predicting neoantigens |
 
 ### Output
