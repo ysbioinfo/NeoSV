@@ -4,12 +4,12 @@ NeoSV is a computational workflow to identify neoantigens from structural variat
 # Installation
 ### Prerequisites
 * [Python (>3.6)](https://www.python.org/downloads/). NeoSV should work well with all versions of Python3, but has been only tested on Python > 3.6
-* [netMHCpan (>4.0)](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.1). After you get the web link for downloading, there will be a accompanied guidance on installing and configuring netMHCpan
-netMHCpan in the email
+* [netMHCpan (>4.0)](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.1). After you sign up and get the link for downloading, there will be a accompanied guidance on how to configure netMHCpan.
 ### Download
-  1. via PyPI (recommended): `pip install NeoSV`<br>
-  2. via Anaconda: `conda install NeoSV`<br>
-  3. or you can download the source code and compile it manually by typing: `python setup.py install`. If you do this way, you also need to install some dependencies, including: biopython, pyensembl.
+  We provide three ways for downloading and installing NeoSV:
+  1. PyPI (recommended): if you already have Python, you can directly install it via `pip install NeoSV`<br>
+  2. Anaconda (recommended): or you can install NeoSV and all dependencies via: `conda install -c bioconda NeoSV`<br>
+  3. From source: download the code from github `python setup.py install`. If you do this way, you also need to install some dependencies, including: biopython, pyensembl.
 
 
 # User guide
