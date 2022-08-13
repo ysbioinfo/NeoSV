@@ -29,8 +29,8 @@ NeoSV requires 3 types of inputs:
     export PYENSEMBL_CACHE_DIR=/custom/cache/dir # specify the location for storing reference
     pyensembl install --release <list of Ensembl release numbers> --species <species-name> # download, for hg19 please use release 75, for hg38 please used release 96
     ```
-  - _Automatically download by NeoSV:_ If NeoSV did not detect a valid reference in , it will automatically download one to that folder. However, please make sure that your server/computer can connect to the internet, because most high performance computing nodes are disconnected.
-  - _Prepare the reference file manually:_ This would be useful if your data is not from human or mouse. Then you need to prepare the reference by yourself. A FASTA file and a GTF file will be enough. For more details please see the guidance in pyensembl.
+  - _Automatically download by NeoSV:_ If NeoSV did not detect a valid reference in `--pyensembl-cache-dir`, it will automatically download one to that folder. However, please make sure that your server/computer can connect to the internet, because most high performance computing nodes are disconnected.
+  - _Prepare the reference file manually:_ This would be useful if your data is not from human or mouse. Then you need to prepare the reference by yourself. A FASTA file and a GTF file will be enough. For more details please see the [guidance](https://github.com/openvax/pyensembl#non-ensembl-data).
 ### Run
 * Quick start: suppose you have a mutation file named `test.sv.vcf`, a HLA file named `test.hla.txt`. Your pyensembl reference is human sapiens release 75 and located at `/pyensembl/`, then a typical NeoSV command is:
   ```
