@@ -13,7 +13,7 @@ We developed a Python package-NeoSV-to **_annotate_** the effect of SVs on prote
 * [Python (>3.6)](https://www.python.org/downloads/). NeoSV should work well with all versions of Python3, but has been only tested on Python > 3.6
 * [netMHCpan (>4.0)](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.1). After you sign up and get the link for downloading, there will be a accompanied guidance on how to configure netMHCpan.
 ### Download
-* PyPI (recommended): if you already have python and pip, you can directly install NeoSV via `pip install NeoSV`<br>
+* PyPI (recommended): if you already have python and pip, you can directly install NeoSV via `pip install neosv`<br>
 * From source: download the code from github and type `python setup.py install`. If you do this way, you need install [biopython](https://biopython.org/), [pyensembl](https://github.com/openvax/pyensembl) by yourself.
 
 
@@ -33,7 +33,7 @@ NeoSV requires 3 types of inputs:
 ### Run
 * Quick start: suppose you have a mutation file named `test.sv.vcf`, a HLA file named `test.hla.txt`. Your pyensembl reference is human sapiens release 75 and located at `/pyensembl/`, then a typical NeoSV command is:
   ```
-  python neosv.py -vf test.sv.vcf -hf test.hla.txt -np /path/to/netmhcpan -o test -p test -r 75    
+  neosv -vf test.sv.vcf -hf test.hla.txt -np /path/to/netmhcpan -o test -p test -r 75    
   ```
 * Below is detailed description for each parameter:
   | &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Argument &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;| Description |
@@ -104,4 +104,4 @@ Several files will be generated in the output directory, you may have interest i
 * ***{prefix}.net.out.txt*** stores the raw output from netMHCpan.
 
 # License
-NeoSV is licensed under the terms of the GPL Open Source license and is available for free.
+NeoSV is licensed under the terms of MIT license.
