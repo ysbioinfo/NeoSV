@@ -23,6 +23,8 @@ NeoSV requires 3 types of inputs:
 * **Mutation file:** a file in [VCF format](https://samtools.github.io/hts-specs/VCFv4.2.pdf) which lists all SVs you want to analyze. Please see sv.vcf as a template.
 * **HLA file:** a file listing the HLA types line-by-line. Usually this includes six HLA alleles for a patient. HLA should be in 4 digit format like: HLA-A*02:01. Please see hla.txt as a template.
 * **Reference file:** NeoSV utilizes pyensembl for SV annotation, thus a reference for pyensembl is needed. There are 3 ways to prepare it: <br>
+
+
   - _Pre-download by pyensembl (recommended):_ When you install NeoSV using pip or conda, pyensembl will be automatically installed as well. Then you can download the reference:<br>
     ```
     export PYENSEMBL_CACHE_DIR=/custom/cache/dir # specify the location for storing reference
