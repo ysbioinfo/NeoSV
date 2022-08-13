@@ -13,8 +13,8 @@ We developed a Python package-NeoSV-to **_annotate_** the effect of SVs on prote
 * [Python (>3.6)](https://www.python.org/downloads/). NeoSV should work well with all versions of Python3, but has been only tested on Python > 3.6
 * [netMHCpan (>4.0)](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.1). After you sign up and get the link for downloading, there will be a accompanied guidance on how to configure netMHCpan.
 ### Download
-* PyPI (recommended): if you already have python and pip, you can directly install NeoSV via `pip install neosv`<br>
-* From source: download the code from github and type `python setup.py install`. If you do this way, you need install [biopython](https://biopython.org/), [pyensembl](https://github.com/openvax/pyensembl) by yourself.
+* PyPI: if you already have python and pip, you can directly install NeoSV via `pip install neosv`<br>
+* Source code: we noted that sometimes pip will not install the binary file neosv, is such case you can download the package and install it using `python setup.py install`. Please remember to install [biopython](https://biopython.org/) and [pyensembl](https://github.com/openvax/pyensembl) using pip before installation.
 
 
 # Usage
