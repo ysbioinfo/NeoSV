@@ -55,7 +55,7 @@ def vcf_load(filepath):
                 chrom = tmpline[0].replace('chr', '')
                 pos = tmpline[1]
                 ref = tmpline[3]
-                alt = tmpline[4]
+                alt = tmpline[4].replace('chr', '')
                 if vcf_alt_format_check(alt):
                     svvcf = VariantCallingFormat(chrom, pos, ref, alt)
                     svvcf_list.append(svvcf)
@@ -75,8 +75,8 @@ def vcf_alt_format_check(alt):
     :param alt: the ALT field of a VCF file
     :return: bool value indicate whether it is a legal ALT field
     """
-    legal_pattern_right = re.compile(r'([ATCG]+)(\]|\[)(.+?):(\d+)(\]|\[)$')
-    legal_pattern_left = re.compile(r'(\]|\[)(.+?):(\d+)(\]|\[)([ATCG]+)$')
+    legal_pattern_right = re.compile(r'([ATCGatcg]+)(\]|\[)(.+?):(\d+)(\]|\[)$')
+    legal_pattern_left = re.compile(r'(\]|\[)(.+?):(\d+)(\]|\[)([ATCGatcg]+)$')
     isright = legal_pattern_right.match(alt)
     isleft = legal_pattern_left.match(alt)
     return isright or isleft

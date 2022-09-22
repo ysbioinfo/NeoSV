@@ -19,9 +19,10 @@ def get_insertion(alt):
     :param alt: the ALT field of VCF format
     :return: inserted sequence of this SV
     """
-    nt_pattern = re.compile(r'[ATCG]+')
-    right_pattern = re.compile(r'([ATCG]+)(\]|\[)')
+    nt_pattern = re.compile(r'[ATCGatcg]+')
+    right_pattern = re.compile(r'([ATCGatcg]+)(\]|\[)')
     nt = nt_pattern.findall(alt)[0]
+    nt = nt.upper()
     if len(nt) == 1:
         return ''
     else:
@@ -40,13 +41,13 @@ def sv_pattern_infer(svvcf):
     chrom2, pos2 = get_coordinate(svvcf.alt)
     insertion = get_insertion(svvcf.alt)
     # t[p[
-    pattern1 = re.compile(r'[ATCG]+\[.+?\[')
+    pattern1 = re.compile(r'[ATCGatcg]+\[.+?\[')
     # t]p]
-    pattern2 = re.compile(r'[ATCG]+\].+?\]')
+    pattern2 = re.compile(r'[ATCGatcg]+\].+?\]')
     # ]p]t
-    pattern3 = re.compile(r'\].+?\][ATCG]+')
+    pattern3 = re.compile(r'\].+?\][ATCGatcg]+')
     # [p[t
-    pattern4 = re.compile(r'\[.+?\[[ATCG]+')
+    pattern4 = re.compile(r'\[.+?\[[ATCGatcg]+')
 
     if pattern1.search(svvcf.alt):
         pattern = 1
