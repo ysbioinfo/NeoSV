@@ -53,6 +53,7 @@ NeoSV requires 3 types of inputs:
   | `-ic`, `--ic50-cutoff` | Filter neoepitopes with IC50 (nM) above this value. Default: 500. |
   | `-rc`, `--rank-cutoff` | Filter neoepitopes with rank above this value. Default: 2. |
   | `-ct`, `--complete-transcript` | Only complete transcripts will be considered for SV annotation. Default: True. |
+  | `-t`, `--transcript-list` | A list of transcripts (in Ensembl ID) with the highest priority. Default: None. |
   | `--anno-only` | Only annotate SV without predicting neoantigens.If this argument is added, --hla-file is not required, and you will only get the annotation result. |
 
 ### Output
