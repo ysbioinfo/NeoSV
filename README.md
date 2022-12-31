@@ -49,7 +49,8 @@ NeoSV requires 3 types of inputs:
   | `-h`, `--help` | show the help message |
   | `-vf`, `--vcf-file` | Structural variants in VCF format. |
   | `-hf`, `--hla-file` | HLA alleles (resolution: 4 digit), with one allele per line. |
-  | `-np`, `--netmhc-path` | Absolute path to the netMHCpan execution file, please skip this parameter if netMHCpan has been added to your PATH. |
+  | `-np`, `--netmhc-path` | Absolute path to the NetMHCpan execution file, please skip this argument if NetMHCpan has been added to your PATH. |
+  | `-mp`, `--mhcflurry-path` | Absolute path to the MHCflurry execution file. This argument is optional if `-np` has been specified. |
   | `-o`, `--out` | Folder for all result files. A new folder will be created if it does not exist. |
   | `-p`, `--prefix` | This prefix will be added to all output files. |
   | `-r`, `--release` | The release of Ensembl to use. Valid release versions can be found here. Ensembl release corresponding to hg19/GRCh37, hg38/GRCh38 are 75, 95. If your data is from other species, you need to download a GTF file and a cDNA file from [Ensembl](ftp://ftp.ensembl.org/pub) and specify them using -gf and -cf |
