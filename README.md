@@ -3,6 +3,10 @@
 
 A computational workflow to identify **Neo**antigens from **S**tructural **V**ariations.
 
+# New in NeoSV v0.0.3
+This release involves two major updates:
+* MHCflurry is accepted as an alternative MHC binding algorithm. Users can set up MHCflurry according to this guide and feed the execution path of mhcflurry-predict to NeoSV
+* A transcript list (in Ensembl ID) is allowed as an input. NeoSV will first use the transcripts in this list when there are multiple isoforms, instead of using the longest one.
 # Background
 Neoantigens are considered as ideal targets for immunotherapies because they are tumor-specifc and not subject to immune tolerance. Previous studies have been focused on single nucleotide variation (SNV) and insertion-and-deletion (indel), with the neoantigens from structural variation (SV) less characterized.
 
