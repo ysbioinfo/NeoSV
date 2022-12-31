@@ -7,7 +7,7 @@ A computational workflow to identify **Neo**antigens from **S**tructural **V**ar
 This release involves 3 updates:
 * MHCflurry is enabled as an alternative algorithm for predicting MHC binding. Users can set up MHCflurry following [this guidance](https://github.com/openvax/mhcflurry) and feed the execution path of mhcflurry-predict to `--mhcflurry-path`.
 * A transcript list (in Ensembl ID) is allowed as an input `--transcript-list`. NeoSV will first use the transcripts in this list when there are multiple isoforms, instead of using the longest one.
-* Fixed some minor bugs.
+* Accept lower cases of [ATCG] in the REF and ALT field of input VCF.
 
 # Background
 Neoantigens are considered as ideal targets for immunotherapies because they are tumor-specifc and not subject to immune tolerance. Previous studies have been focused on single nucleotide variation (SNV) and insertion-and-deletion (indel), with the neoantigens from structural variation (SV) less characterized.
