@@ -5,7 +5,7 @@ A computational workflow to identify **Neo**antigens from **S**tructural **V**ar
 
 # New in NeoSV v0.0.3
 This release involves 3 updates:
-* MHCflurry is enabled as an alternative algorithm for predicting MHC binding. Users can set up MHCflurry according to [this guide] (https://github.com/openvax/mhcflurry) and feed the execution path of mhcflurry-predict to `--mhcflurry-path`.
+* MHCflurry is enabled as an alternative algorithm for predicting MHC binding. Users can set up MHCflurry according to [this guide](https://github.com/openvax/mhcflurry) and feed the execution path of mhcflurry-predict to `--mhcflurry-path`.
 * A transcript list (in Ensembl ID) is allowed as an input `--transcript-list`. NeoSV will first use the transcripts in this list when there are multiple isoforms, instead of using the longest one.
 * Fixed some minor bugs.
 
