@@ -11,6 +11,8 @@ def create_arg_parser():
                         help='HLA alleles (resolution: 4 digit, e.g. HLA-A*02:01), with one allele per line.')
     parser.add_argument('-np', '--netmhc-path', dest='netmhc', metavar='NETMHC_PATH', default=None,
                         help='Absolute path to the netMHCpan execution file, please skip this parameter if netMHCpan has been added to your PATH.')
+    parser.add_argument('-mp', '--mhcflurry-path', dest='mhcflu', metavar='MHCFLURRY_PATH', default=None,
+                        help='Absolute path to the MHCflurry execution file, this parameter is optional if you want to use NetMHCpan only.')
     parser.add_argument('-o', '--out', dest='outdir', metavar='OUTDIR', required=True,
                         help="Folder for all result files. A new folder will be created if it does not exist.")
     parser.add_argument('-p', '--prefix', dest='prefix', metavar='PREFIX', default='sample',
