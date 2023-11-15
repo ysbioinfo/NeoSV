@@ -4,8 +4,7 @@
 A computational workflow to identify **Neo**antigens from **S**tructural **V**ariations.
 
 # New in NeoSV v0.0.3
-This release involves 3 updates:
-* MHCflurry is enabled as an alternative algorithm for predicting MHC binding. Users can set up MHCflurry following [this guidance](https://github.com/openvax/mhcflurry) and feed the execution path of mhcflurry-predict to `--mhcflurry-path`.
+This release involves 2 updates:
 * A transcript list (in Ensembl ID) is allowed as an input `--transcript-list`. NeoSV will first use the transcripts in this list when there are multiple isoforms, instead of using the longest one.
 * Accept lower cases of [ATCG] in the REF and ALT field of input VCF.
 
@@ -17,8 +16,7 @@ We developed a Python package-NeoSV-to **_annotate_** the effect of SVs on prote
 # Install
 ### Prerequisites
 * [Python (>3.6)](https://www.python.org/downloads/). NeoSV should work well with all versions of Python3, but has been only tested on Python > 3.6
-* [NetMHCpan (>4.0)](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.1). After you sign up and get the link for downloading, there will be a accompanied guidance on how to configure netMHCpan.
-* [MHCflurry (2.0)](https://github.com/openvax/mhcflurry) (optional). Anaconda may help on installing because MHCflurry requires tensorflow.
+* [NetMHCpan (4.0)](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.1). After you sign up and get the link for downloading, there will be a accompanied guidance on how to configure netMHCpan.
 ### Download
 * PyPI: if you already have python and pip, you can directly install NeoSV via `pip install neosv`<br>
 * Source code: we noted that sometimes pip will not install the binary file neosv, is such case you can download the package and install it using `python setup.py install`. Please remember to install [biopython](https://biopython.org/) and [pyensembl](https://github.com/openvax/pyensembl) using pip before installation.
