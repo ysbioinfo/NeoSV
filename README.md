@@ -3,10 +3,10 @@
 
 A computational workflow to identify **Neo**antigens from **S**tructural **V**ariations.
 
-# New in NeoSV v0.0.3
-This release involves 2 updates:
-* A transcript list (in Ensembl ID) is allowed as an input `--transcript-list`. NeoSV will first use the transcripts in this list when there are multiple isoforms, instead of using the longest one.
-* Accept lower cases of [ATCG] in the REF and ALT field of input VCF.
+# New in NeoSV v0.0.4
+* Support BEDPE format as input
+* Fix bugs related to NetMHCpan 4.1 (NetMHCpan 4.0 is not supported now)
+* Add an additional parameter erc, which enable users filter neoantigens by EL (eluted ligand) rank
 
 # Background
 Neoantigens are considered as ideal targets for immunotherapies because they are tumor-specifc and not subject to immune tolerance. Previous studies have been focused on single nucleotide variation (SNV) and insertion-and-deletion (indel), with the neoantigens from structural variation (SV) less characterized.
@@ -16,7 +16,7 @@ We developed a Python package-NeoSV-to **_annotate_** the effect of SVs on prote
 # Install
 ### Prerequisites
 * [Python (>3.6)](https://www.python.org/downloads/). NeoSV should work well with all versions of Python3, but has been only tested on Python > 3.6
-* [NetMHCpan (4.0)](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.1). After you sign up and get the link for downloading, there will be a accompanied guidance on how to configure netMHCpan.
+* [NetMHCpan (4.1)](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.1). After you sign up and get the link for downloading, there will be a accompanied guidance on how to configure netMHCpan.
 ### Download
 * PyPI: if you already have python and pip, you can directly install NeoSV via `pip install neosv`<br>
 * Source code: we noted that sometimes pip will not install the binary file neosv, is such case you can download the package and install it using `python setup.py install`. Please remember to install [biopython](https://biopython.org/) and [pyensembl](https://github.com/openvax/pyensembl) using pip before installation.
@@ -25,7 +25,7 @@ We developed a Python package-NeoSV-to **_annotate_** the effect of SVs on prote
 # Usage
 ### Input
 NeoSV requires 3 types of inputs:
-* **Mutation file:** a file in [VCF format](https://samtools.github.io/hts-specs/VCFv4.2.pdf) which lists all SVs you want to analyze. Please see [test.sv.vcf](https://github.com/ysbioinfo/NeoSV/blob/main/test.sv.vcf) as a template.
+* **Variant file:** a file in [VCF format](https://samtools.github.io/hts-specs/VCFv4.2.pdf) or [BEDPE format](https://bedtools.readthedocs.io/en/latest/content/general-usage.html#bedpe-format) which lists all SVs you want to analyze. Template files: [test.sv.vcf](https://github.com/ysbioinfo/NeoSV/blob/main/test.sv.vcf) and [test.sv.bedpe](https://github.com/ysbioinfo/NeoSV/blob/main/test.sv.bedpe)
 * **HLA file:** a file listing the HLA types line-by-line. Usually this includes six HLA alleles for a patient. HLA should be in 4 digit format like: HLA-A*02:01. Please see [test.hla.txt](https://github.com/ysbioinfo/NeoSV/blob/main/test.hla.txt) as a template.
 * **Reference file:** NeoSV utilizes pyensembl for SV annotation, thus a reference for pyensembl is needed. There are 3 ways to prepare it: <br>
 
@@ -37,7 +37,7 @@ NeoSV requires 3 types of inputs:
   - _Automatically download by NeoSV:_ If NeoSV did not detect a valid reference in `--pyensembl-cache-dir`, it will automatically download one to that folder. However, please make sure that your server/computer can connect to the internet, because most high performance computing nodes are disconnected.
   - _Prepare the reference file manually:_ This would be useful if your data is not from human or mouse. Then you need to prepare the reference by yourself. A FASTA file and a GTF file will be enough. For more details please see the [guidance](https://github.com/openvax/pyensembl#non-ensembl-data).
 ### Run
-* Quick start: suppose you have a mutation file named `test.sv.vcf`, a HLA file named `test.hla.txt`. Your pyensembl reference is human sapiens release 75 and located at `/pyensembl/`, then a typical NeoSV command is:
+* Quick start: suppose you have a variant file named `test.sv.vcf`, a HLA file named `test.hla.txt`. Your pyensembl reference is human sapiens release 75 and located at `/pyensembl/`, then a typical NeoSV command is:
   ```
   neosv -vf test.sv.vcf -hf test.hla.txt -np /path/to/netmhcpan -o test -p test -r 75    
   ```
