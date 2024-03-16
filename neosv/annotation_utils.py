@@ -1,5 +1,5 @@
-from neosv.annotation_class import EXON, EXONCollection, SVEffect
-from neosv.transcript_utils import get_transcript, get_exon_range, get_intron_range, is_overlap
+from .annotation_class import EXON, EXONCollection, SVEffect
+from .transcript_utils import get_transcript, get_exon_range, get_intron_range, is_overlap
 
 
 def truncate_exon(transcript, direction, pos):

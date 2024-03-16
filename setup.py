@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.1' 
+VERSION = '0.0.4' 
 DESCRIPTION = 'Neoantigens from Structural Variations'
 LONG_DESCRIPTION = 'neosv is a workflow for annotating SVs and predicting neoantigens from SVs'
 # Setting up

@@ -1,5 +1,5 @@
-from neosv.fusion_class import CDS, CDSCollection, SVFusion
-from neosv.transcript_utils import get_cds_range, get_noncds_range, is_overlap, get_transcript
+from .fusion_class import CDS, CDSCollection, SVFusion
+from .transcript_utils import get_cds_range, get_noncds_range, is_overlap, get_transcript
 
 
 def truncate_cds(transcript, direction, pos):

@@ -1,6 +1,6 @@
 import re
 from collections import OrderedDict
-from neosv.sv_class import StructuralVariant
+from .sv_class import StructuralVariant
 
 
 def get_coordinate(alt):
@@ -32,7 +32,7 @@ def get_insertion(alt):
             return nt[:-1]
 
 
-def sv_pattern_infer(svvcf):
+def sv_pattern_infer_vcf(svvcf):
     """
     :param svvcf: a SV stored as a VariantCallingFormat object
     :return: a StructuralVariant object
@@ -58,6 +58,35 @@ def sv_pattern_infer(svvcf):
     else:
         pattern = 4
     return StructuralVariant(chrom1, pos1, chrom2, pos2, insertion, pattern)
+
+
+def sv_pattern_infer_bedpe(bedpe):
+    """
+    :param bedpe: a SV stored as a BEDPE object
+    :return: a StructuralVariant object
+    """
+    chrom1, pos1, strand1 = bedpe.chrom1, int(bedpe.pos1), bedpe.strand1
+    chrom2, pos2, strand2 = bedpe.chrom2, int(bedpe.pos2), bedpe.strand2
+    # the insertion information is lost in BEDPE file
+    insertion = ''
+
+    # in BEDPE format, + always indicates 5' sequence and - indicates 3' sequence
+    # refer to SVtools vcftobedpeconverter.py and issue #5 on GitHub
+    if strand1 == '+' and strand2 == '+':
+        pattern = 2
+    elif strand1 == '+' and strand2 == '-':
+        pattern = 1
+        pos2 += 1
+    elif strand1 == '-' and strand2 == '+':
+        pattern = 3
+        pos1 += 1
+    else:
+        pattern = 4
+        pos1 += 1
+        pos2 += 1
+
+    return StructuralVariant(chrom1, pos1, chrom2, pos2, insertion, pattern)
+
 
 
 def remove_duplicate(sv_list):

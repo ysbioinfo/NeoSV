@@ -36,6 +36,43 @@ class VariantCallingFormat(object):
         )
 
 
+class BedpeFormat(object):
+    """
+    Class for storing SV information in BEDPE format,
+    all components are in string format
+    """
+
+    def __init__(self, chrom1, pos1, strand1, chrom2, pos2, strand2):
+        self.chrom1 = chrom1
+        self.pos1 = pos1
+        self.strand1 = strand1
+        self.chrom2 = chrom2
+        self.pos2 = pos2
+        self.strand2 = strand2
+
+    def __str__(self):
+        return "%s(chrom1 = %s, pos1 = %s, strand1 = %s, chrom2 = %s, pos2 = %s, strand2 = %s)" % (
+            self.__class__.__name__,
+            self.chrom1,
+        	self.pos1,
+        	self.strand1,
+        	self.chrom2,
+        	self.pos2,
+        	self.strand2
+        )
+
+    def __repr__(self):
+        return "%s(%s, %s, %s, %s, %s, %s)" % (
+            self.__class__.__name__,
+            self.chrom1,
+        	self.pos1,
+        	self.strand1,
+        	self.chrom2,
+        	self.pos2,
+        	self.strand2
+        )
+
+
 def vcf_load(filepath):
     """
     :param filepath: the absolute path of a VCF file
@@ -82,6 +119,37 @@ def vcf_alt_format_check(alt):
     return isright or isleft
 
 
+def bedpe_load(filepath):
+    """
+    :param filepath: the absolute path of a BEDPE file
+    :return: a list of BEDPE objects
+    """
+    bedpe_list = []
+    filename = os.path.basename(filepath)
+    line_num = 0
+    print("Loading SVs from {0}.".format(filename))
+    with open(filepath, 'r') as f:
+        header = next(f)
+        header = header.rstrip().split('\t')
+        for line in f:
+            line_num += 1
+            tmpline = line.rstrip().split("\t")
+            chrom1 = tmpline[header.index('chrom1')].replace('chr', '')
+            pos1 = tmpline[header.index('start1')]
+            chrom2 = tmpline[header.index('chrom2')].replace('chr', '')
+            pos2 = tmpline[header.index('start2')]
+            strand1 = tmpline[header.index('strand1')]
+            strand2 = tmpline[header.index('strand2')]
+            bedpe = BedpeFormat(chrom1, pos1, strand1, chrom2, pos2, strand2)
+            bedpe_list.append(bedpe)
+
+    if not bedpe_list:
+        warn("No SV was detected in {0}.".format(filename))
+    else:
+        print("{0} SVs were detected.".format(len(bedpe_list)))
+    return bedpe_list
+
+
 def hla_load(filepath):
     """
     :param filepath: the absolute path of a HLA typing file
@@ -92,19 +160,9 @@ def hla_load(filepath):
     with open(filepath, 'r') as f:
         for line in f:
             hla_allele = line.rstrip()
-            if not hla_format_check(hla_allele):
-                raise IOError("{0} in file {1} is not a supported HLA format.".format(hla_allele, filename))
             hla_alleles.append(hla_allele.replace('*', ''))
     return ','.join(hla_alleles)
 
-
-def hla_format_check(hla_allele):
-    """
-    :param hla_allele: a string indicating the hla allele
-    :return: whether it is in right format
-    """
-    legal_pattern = re.compile(r'HLA-[ABC]\*\d{2}:\d{2}$')
-    return legal_pattern.match(hla_allele)
 
 
 def ensembl_load(release, gtf_file, cdna_file, cache_dir):

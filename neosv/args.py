@@ -5,14 +5,12 @@ import sys
 
 def create_arg_parser():
     parser = argparse.ArgumentParser(prog="neosv")
-    parser.add_argument('-vf', '--vcf-file', dest='vcffile', metavar='VCF_FILE', required=True,
-                        help='Structural variants in VCF format..')
+    parser.add_argument('-sf', '--sv-file', dest='svfile', metavar='SV_FILE', required=True,
+                        help='Structural variants in VCF or BEDPE format. NeoSV will discern the format based on the file suffix.')
     parser.add_argument('-hf', '--hla-file', dest='hlafile', metavar='HLA_FILE', default=None,
                         help='HLA alleles (resolution: 4 digit, e.g. HLA-A*02:01), with one allele per line.')
     parser.add_argument('-np', '--netmhc-path', dest='netmhc', metavar='NETMHC_PATH', default=None,
                         help='Absolute path to the netMHCpan execution file, please skip this parameter if netMHCpan has been added to your PATH.')
-    parser.add_argument('-mp', '--mhcflurry-path', dest='mhcflu', metavar='MHCFLURRY_PATH', default=None,
-                        help='Absolute path to the MHCflurry execution file, this parameter is optional if you want to use NetMHCpan only.')
     parser.add_argument('-o', '--out', dest='outdir', metavar='OUTDIR', required=True,
                         help="Folder for all result files. A new folder will be created if it does not exist.")
     parser.add_argument('-p', '--prefix', dest='prefix', metavar='PREFIX', default='sample',
@@ -33,12 +31,14 @@ def create_arg_parser():
                         help='Lengths of neoepitopes to predict MHC binding. Default: 8-11.')
     parser.add_argument('-ic', '--ic50-cutoff', dest='aff_cutoff', metavar='IC50_CUTOFF', type=float, default=500,
                         help='Filter neoepitopes with IC50 (nM) above this value. Default: 500.')
-    parser.add_argument('-rc', '--ranking-cutoff', dest='rank_cutoff', metavar='RANKING_CUTOFF', type=float,
+    parser.add_argument('-brc', '--ba-ranking-cutoff', dest='ba_rank_cutoff', metavar='RANKING_CUTOFF', type=float,
+                        default='2.0', help='Filter neoepitopes with rank above this value. Default: 2.')
+    parser.add_argument('-erc', '--el-ranking-cutoff', dest='el_rank_cutoff', metavar='RANKING_CUTOFF', type=float,
                         default='2.0', help='Filter neoepitopes with rank above this value. Default: 2.')
     parser.add_argument('-ct', '--complete-transcript', dest='complete', metavar='COMPLETE_TRANSCRIPT', type=bool,
                         default=False, help='Only complete transcripts will be considered for SV annotation.')
     parser.add_argument('--anno-only', dest='anno', action='store_true', default=False,
-                        help='Only annotate SV without predicting neoantigens.If this argument is added,'
+                        help='Only annotate SV without predicting neoantigens. If this argument is added,'
                         '--hla-file is not required, and you will only get the annotation result.')
 
     args = parser.parse_args()
@@ -57,7 +57,7 @@ def create_arg_parser():
         sys.exit('No HLA file specified. The annotation-only mode could be used '
                  '(--annotation-only) if you do not have HLA information.')
     if not args.anno and not args.netmhc:
-        sys.exit('No netMHC exec file specified. he annotation-only mode could be used '
+        sys.exit('NetMHCpan not specified. The annotation-only mode could be used '
                  '(--annotation-only) if you do not want to predict neoantigen.')
     if not os.path.exists(args.outdir):
         os.mkdir(args.outdir)

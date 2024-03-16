@@ -1,12 +1,12 @@
 import os
-from neosv.args import create_arg_parser
-from neosv.input import vcf_load, hla_load, ensembl_load, get_window_range
-from neosv.sv_utils import sv_pattern_infer, remove_duplicate
-from neosv.annotation_utils import sv_to_sveffect
-from neosv.fusion_utils import sv_to_svfusion
-from neosv.sequence_utils import set_nt_seq, set_aa_seq, generate_neoepitopes
-from neosv.netMHC import netmhc_pep_prep, netmhc_run, netmhc_reload, netmhc_filter
-from neosv.output import write_annot, write_fusion
+from .args import create_arg_parser
+from .input import vcf_load, bedpe_load, hla_load, ensembl_load, get_window_range
+from .sv_utils import sv_pattern_infer_vcf, sv_pattern_infer_bedpe, remove_duplicate
+from .annotation_utils import sv_to_sveffect
+from .fusion_utils import sv_to_svfusion
+from .sequence_utils import set_nt_seq, set_aa_seq, generate_neoepitopes
+from .netMHC import netmhc_pep_prep, netmhc_run, netmhc_reload, netmhc_filter
+from .output import write_annot, write_fusion
 
 
 def main():
@@ -14,10 +14,19 @@ def main():
     args = create_arg_parser()
     # load a pyensembl Genome class
     ensembl = ensembl_load(args.release, args.gtffile, args.cdnafile, args.cachedir)
-    # load vcf file and transform SVs into VariantCallingFormat class
-    sv_vcfs = vcf_load(args.vcffile)
-    # transform SV from VariantCallingFormat class to StructuralVariant class
-    svs = [sv_pattern_infer(sv_vcf) for sv_vcf in sv_vcfs]
+
+    if args.svfile.endswith('.vcf'):
+        # load vcf file and transform SVs into VariantCallingFormat class
+        sv_vcfs = vcf_load(args.svfile)
+        # transform SV from VariantCallingFormat class to StructuralVariant class
+        svs = [sv_pattern_infer_vcf(sv_vcf) for sv_vcf in sv_vcfs]
+    elif args.svfile.endswith('.bedpe'):
+        # load vcf file and transform SVs into BEDPE class
+        sv_beds = bedpe_load(args.svfile)
+        # transform SV from BEDPE class to StructuralVariant class
+        svs = [sv_pattern_infer_bedpe(sv_bed) for sv_bed in sv_beds]
+    else:
+        sys.exit('The input file must end with .vcf or .bedpe. Other format is not allowed.')
     # remove duplicated SVs
     svs = remove_duplicate(svs)
 
@@ -55,7 +64,7 @@ def main():
 
         # reload and filter the neoepitopes based on netMHC result
         dict_epitope = netmhc_reload(file_netmhc_out)
-        dict_epitope = netmhc_filter(dict_epitope, args.aff_cutoff, args.rank_cutoff)
+        dict_epitope = netmhc_filter(dict_epitope, args.aff_cutoff, args.ba_rank_cutoff, args.el_rank_cutoff)
 
         # generate the final outfile
         file_fusion = os.path.join(args.outdir, args.prefix + '.neoantigen.txt')
