@@ -5,7 +5,7 @@ A computational workflow to identify **Neo**antigens from **S**tructural **V**ar
 
 # New in NeoSV v0.0.4
 * Support BEDPE format as input
-* Fix bugs related to NetMHCpan 4.1 (NetMHCpan 4.0 is not supported now)
+* Fix bugs related to NetMHCpan 4.1 (NetMHCpan 4.0 will no longer be supported by NeoSV.)
 * Add an additional parameter erc, which enable users filter neoantigens by EL (eluted ligand) rank
 
 # Background
@@ -26,7 +26,7 @@ We developed a Python package-NeoSV-to **_annotate_** the effect of SVs on prote
 ### Input
 NeoSV requires 3 types of inputs:
 * **Variant file:** a file in [VCF format](https://samtools.github.io/hts-specs/VCFv4.2.pdf) or [BEDPE format](https://bedtools.readthedocs.io/en/latest/content/general-usage.html#bedpe-format) which lists all SVs you want to analyze. Template files: [test.sv.vcf](https://github.com/ysbioinfo/NeoSV/blob/main/test.sv.vcf) and [test.sv.bedpe](https://github.com/ysbioinfo/NeoSV/blob/main/test.sv.bedpe)
-* **HLA file:** a file listing the HLA types line-by-line. Usually this includes six HLA alleles for a patient. HLA should be in 4 digit format like: HLA-A*02:01. Please see [test.hla.txt](https://github.com/ysbioinfo/NeoSV/blob/main/test.hla.txt) as a template.
+* **HLA file:** a file listing the HLA alleles line by line. This usually includes six HLA alleles for an individual. HLA should be in 4 digit format like HLA-A*02:01. Template file: [test.hla.txt](https://github.com/ysbioinfo/NeoSV/blob/main/test.hla.txt)
 * **Reference file:** NeoSV utilizes pyensembl for SV annotation, thus a reference for pyensembl is needed. There are 3 ways to prepare it: <br>
 
   - _Pre-download by pyensembl (recommended):_ When you install NeoSV using pip or conda, pyensembl will be automatically installed as well. Then you can download the reference:<br>
@@ -34,8 +34,8 @@ NeoSV requires 3 types of inputs:
     export PYENSEMBL_CACHE_DIR=/custom/cache/dir # specify the location for storing reference
     pyensembl install --release <list of Ensembl release numbers> --species <species-name> # download, for hg19 please use release 75, for hg38 please used release 96
     ```
-  - _Automatically download by NeoSV:_ If NeoSV did not detect a valid reference in `--pyensembl-cache-dir`, it will automatically download one to that folder. However, please make sure that your server/computer can connect to the internet, because most high performance computing nodes are disconnected.
-  - _Prepare the reference file manually:_ This would be useful if your data is not from human or mouse. Then you need to prepare the reference by yourself. A FASTA file and a GTF file will be enough. For more details please see the [guidance](https://github.com/openvax/pyensembl#non-ensembl-data).
+  - _Automatically download by NeoSV:_ If NeoSV did not detect a valid reference in `--pyensembl-cache-dir`, it will automatically download one to that folder. Please make sure the internet connection of your system, since some high performance computing nodes have no network.
+  - _Prepare the reference file manually:_ This would be useful if your data is not from human or mouse. Then you need to prepare the reference by yourself. A FASTA file and a GTF file will be enough. For more details please see the [guidance](https://github.com/openvax/pyensembl#non-ensembl-data). In addition, you need to confirm the MHC alleles in that species are supported by NetMHCpan. 
 ### Run
 * Quick start: suppose you have a variant file named `test.sv.vcf`, a HLA file named `test.hla.txt`. Your pyensembl reference is human sapiens release 75 and located at `/pyensembl/`, then a typical NeoSV command is:
   ```
@@ -45,21 +45,20 @@ NeoSV requires 3 types of inputs:
   | &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Argument &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;| Description |
   | :------------ | --- |
   | `-h`, `--help` | show the help message |
-  | `-vf`, `--vcf-file` | Structural variants in VCF format. |
+  | `-sf`, `--sv-file` | Structural variants in VCF or BEDPE format. NeoSV will automatically identify the format according to the file suffix.|
   | `-hf`, `--hla-file` | HLA alleles (resolution: 4 digit), with one allele per line. |
   | `-np`, `--netmhc-path` | Absolute path to the NetMHCpan execution file, please skip this argument if NetMHCpan has been added to your PATH. |
-  | `-mp`, `--mhcflurry-path` | Absolute path to the MHCflurry execution file. This argument is optional if `-np` has been specified. |
   | `-o`, `--out` | Folder for all result files. A new folder will be created if it does not exist. |
   | `-p`, `--prefix` | This prefix will be added to all output files. |
-  | `-r`, `--release` | The release of Ensembl to use. Valid release versions can be found here. Ensembl release corresponding to hg19/GRCh37, hg38/GRCh38 are 75, 95. If your data is from other species, you need to download a GTF file and a cDNA file from [Ensembl](ftp://ftp.ensembl.org/pub) and specify them using -gf and -cf |
-  | `-gf`, `--gtf-file` | GTF file for the reference, only needed  |
-  | `-cf`, `--cdna-file` | cDNA file for the reference |
+  | `-r`, `--release` | The release of Ensembl to use. Valid release versions can be found here. Ensembl release for hg19/GRCh37, hg38/GRCh38 are 75, 95. |
+  | `-gf`, `--gtf-file` | GTF file for the reference, only needed when you want to prepare the ensembl reference by yourself. |
+  | `-cf`, `--cdna-file` | cDNA file for the reference, only needed when you want to prepare the ensembl reference by yourself. |
   | `-pd`, `--pyemsembl-cache-dir` | Directory for Pyensembl cache files. If not specified, the platform-specific cache folder will be used |
   | `-l`, `--epitope-lengths` | Lengths of neoepitopes to predict MHC binding. Default: 8-11. |
   | `-ic`, `--ic50-cutoff` | Filter neoepitopes with IC50 (nM) above this value. Default: 500. |
-  | `-rc`, `--rank-cutoff` | Filter neoepitopes with rank above this value. Default: 2. |
+  | `-brc`, `--ba-rank-cutoff` | Filter neoepitopes with BA-rank above this value. Default: 2. |
+  | `-erc`, `--el-rank-cutoff` | Filter neoepitopes with EL-rank above this value. Default: 2. |
   | `-ct`, `--complete-transcript` | Only complete transcripts will be considered for SV annotation. Default: True. |
-  | `-t`, `--transcript-list` | A list of transcripts (in Ensembl ID) with the highest priority. Default: None. |
   | `--anno-only` | Only annotate SV without predicting neoantigens.If this argument is added, --hla-file is not required, and you will only get the annotation result. |
 
 ### Output
@@ -82,8 +81,9 @@ Several files will be generated in the output directory, you may have interest i
   | 11 | frameshift | The effect on open reading frame. Values: _In-frame_, _Stop-gain_, _Stop-loss_, _Start-loss_. |
   | 12 | neoantigen | Amino acid sequence of the neoantigen |
   | 13 | allele | HLA allele that binds to the neoantigen |
-  | 14 | affinity | Binding affinity (nM) provided by netMHCpan |
-  | 15 | rank | Rank of the binding provided by netMHCpan |
+  | 14 | affinity | Binding affinity (nM) provided by NetMHCpan |
+  | 15 | BA_rank | BA rank of the binding provided by NetMHCpan |
+  | 16 | EL_rank | EL rank of the binding provided by NetMHCpan. From NetMHCpan4.0, EL rank is the most recommended feature for filtering neoantigens.|
 
 * ***{prefix}.anno.filtered.txt*** stores all annotations of the SVs:
 
