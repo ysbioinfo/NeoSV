@@ -1,5 +1,5 @@
 # NeoSV
-<img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/NeoSV">  <a href="https://pypi.python.org/pypi/NeoSV/"> <img src="https://img.shields.io/pypi/v/NeoSV.svg?maxAge=1000" alt="PyPI" /> </a>  <img alt="GitHub" src="https://img.shields.io/github/license/ysbioinfo/NeoSV">  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/ysbioinfo/NeoSV/total">
+<img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/NeoSV">  <a href="https://pypi.python.org/pypi/NeoSV/"> <img src="https://img.shields.io/pypi/v/NeoSV.svg?maxAge=1000" alt="PyPI" /> </a>  <img alt="GitHub" src="https://img.shields.io/github/license/ysbioinfo/NeoSV">
 
 A computational workflow to identify **Neo**antigens from **S**tructural **V**ariations.
 
