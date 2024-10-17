@@ -53,7 +53,7 @@ NeoSV requires 3 types of inputs:
   | `-np`, `--netmhc-path` | Absolute path to the NetMHCpan execution file, please skip this argument if NetMHCpan has been added to your PATH. |
   | `-o`, `--out` | Folder for all result files. A new folder will be created if it does not exist. |
   | `-p`, `--prefix` | This prefix will be added to all output files. |
-  | `-r`, `--release` | The release of Ensembl to use. Valid release versions can be found here. Ensembl release for hg19/GRCh37, hg38/GRCh38 are 75, 95. |
+  | `-r`, `--release` | The release of Ensembl to use. Valid release versions can be found here. Ensembl release for hg19/GRCh37, hg38/GRCh38 are 75, 96. |
   | `-gf`, `--gtf-file` | GTF file for the reference, only needed when you want to prepare the ensembl reference by yourself. |
   | `-cf`, `--cdna-file` | cDNA file for the reference, only needed when you want to prepare the ensembl reference by yourself. |
   | `-pd`, `--pyemsembl-cache-dir` | Directory for Pyensembl cache files. If not specified, the platform-specific cache folder will be used |
